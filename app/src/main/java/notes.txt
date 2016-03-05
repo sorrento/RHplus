@@ -1,0 +1,17 @@
+---Done
+
+1)Sección donde puede 2 descargar pdfs  y ver
+
+---
+
+Sección donde hay 2 videos de youtube
+Sección con grafico de radar
+
+___bugs
+- no carga las imagenes
+- dice que descarga, pero no hace nada
+
+
+AIzaSyB6EnTI3sue0Qx4ZgH4dTmNODgnpVuyqlU
+----
+poner drawer  tabs
