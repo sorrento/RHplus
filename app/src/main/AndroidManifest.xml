@@ -19,7 +19,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DocsActivity" />
         <activity android:name=".VideoListDemoActivity" />
-        <activity android:name=".CalendarActivity">
+        <activity android:name=".CalendarActivity"></activity>
+        <activity android:name=".RadarChartActivitry">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
