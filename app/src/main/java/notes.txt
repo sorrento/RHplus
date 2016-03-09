@@ -1,17 +1,18 @@
 ---Done
 
-1)Sección donde puede 2 descargar pdfs  y ver
+1) Sección donde puede 2 descargar pdfs  y ver
+2) Sección donde hay 2 videos de youtube
 
----
+---DOing
 
-Sección donde hay 2 videos de youtube
-Sección con grafico de radar
+4) Calendario
+    [add events preguntando]
+3) Sección con grafico de radar
+5) poner drawer o tabs
 
 ___bugs
-- no carga las imagenes
-- dice que descarga, pero no hace nada
-
+- calendarion lo ponea la misma hora...
+__________
 
 AIzaSyB6EnTI3sue0Qx4ZgH4dTmNODgnpVuyqlU
 ----
-poner drawer  tabs
