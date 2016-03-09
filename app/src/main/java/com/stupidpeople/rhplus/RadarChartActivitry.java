@@ -27,6 +27,10 @@ public class RadarChartActivitry extends DemoBase {
 
     private RadarChart mChart;
     private Typeface tf;
+    private String[] mParties = new String[]{
+            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
+            "Party I"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,92 +166,6 @@ public class RadarChartActivitry extends DemoBase {
         }
         return true;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.actionToggleValues: {
-                for (IDataSet<?> set : mChart.getData().getDataSets())
-                    set.setDrawValues(!set.isDrawValuesEnabled());
-
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleHighlight: {
-                if (mChart.getData() != null) {
-                    mChart.getData().setHighlightEnabled(!mChart.getData().isHighlightEnabled());
-                    mChart.invalidate();
-                }
-                break;
-            }
-            case R.id.actionToggleRotate: {
-                if (mChart.isRotationEnabled())
-                    mChart.setRotationEnabled(false);
-                else
-                    mChart.setRotationEnabled(true);
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleFilled: {
-
-                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) mChart.getData()
-                        .getDataSets();
-
-                for (IRadarDataSet set : sets) {
-                    if (set.isDrawFilledEnabled())
-                        set.setDrawFilled(false);
-                    else
-                        set.setDrawFilled(true);
-                }
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionSave: {
-                if (mChart.saveToPath("title" + System.currentTimeMillis(), "")) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
-                break;
-            }
-            case R.id.actionToggleXLabels: {
-                mChart.getXAxis().setEnabled(!mChart.getXAxis().isEnabled());
-                mChart.notifyDataSetChanged();
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleYLabels: {
-
-                mChart.getYAxis().setEnabled(!mChart.getYAxis().isEnabled());
-                mChart.invalidate();
-                break;
-            }
-            case R.id.animateX: {
-                mChart.animateX(1400);
-                break;
-            }
-            case R.id.animateY: {
-                mChart.animateY(1400);
-                break;
-            }
-            case R.id.animateXY: {
-                mChart.animateXY(1400, 1400);
-                break;
-            }
-            case R.id.actionToggleSpin: {
-                mChart.spin(2000, mChart.getRotationAngle(), mChart.getRotationAngle() + 360, Easing.EasingOption.EaseInCubic);
-                break;
-            }
-        }
-        return true;
-    }
-
-    private String[] mParties = new String[]{
-            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
-            "Party I"
-    };
 
     public void setData() {
 
