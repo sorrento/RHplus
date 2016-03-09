@@ -2,16 +2,15 @@
 
 1) Sección donde puede 2 descargar pdfs  y ver
 2) Sección donde hay 2 videos de youtube
+4) Calendario
+    [add events preguntando y automatico]
 
 ---DOing
-
-4) Calendario
-    [add events preguntando]
 3) Sección con grafico de radar
 5) poner drawer o tabs
 
 ___bugs
-- calendarion lo ponea la misma hora...
+
 __________
 
 AIzaSyB6EnTI3sue0Qx4ZgH4dTmNODgnpVuyqlU
