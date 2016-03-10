@@ -27,9 +27,9 @@ public class RadarChartActivitry extends DemoBase {
 
     private RadarChart mChart;
     private Typeface tf;
-    private String[] mParties = new String[]{
-            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
-            "Party I"
+    private String[] mDimensions = new String[]{
+            "Liderazgo", "Comunicación", "Creatividad", "Eficiencia", "Lenguaje", "Presencia", "Solver", "Resolución",
+            "Respeto"
     };
 
     @Override
@@ -189,7 +189,7 @@ public class RadarChartActivitry extends DemoBase {
         ArrayList<String> xVals = new ArrayList<String>();
 
         for (int i = 0; i < cnt; i++)
-            xVals.add(mParties[i % mParties.length]);
+            xVals.add(mDimensions[i % mDimensions.length]);
 
         RadarDataSet set1 = new RadarDataSet(yVals1, "Set 1");
         set1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
