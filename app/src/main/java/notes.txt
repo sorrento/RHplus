@@ -4,13 +4,15 @@
 2) Sección donde hay 2 videos de youtube
 4) Calendario
     [add events preguntando y automatico]
-
----DOing
 3) Sección con grafico de radar
 5) poner drawer o tabs
 
-___bugs
+---DOing
 
+___bugs
+- video:
+    no pude poner el drawe ahi
+ - no funciona full screen
 __________
 
 AIzaSyB6EnTI3sue0Qx4ZgH4dTmNODgnpVuyqlU

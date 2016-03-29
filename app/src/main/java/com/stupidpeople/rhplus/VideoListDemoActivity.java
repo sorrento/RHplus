@@ -83,6 +83,21 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
 
   private boolean isFullscreen;
 
+  private static void setLayoutSize(View view, int width, int height) {
+    LayoutParams params = view.getLayoutParams();
+    params.width = width;
+    params.height = height;
+    view.setLayoutParams(params);
+  }
+
+  private static void setLayoutSizeAndGravity(View view, int width, int height, int gravity) {
+    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
+    params.width = width;
+    params.height = height;
+    params.gravity = gravity;
+    view.setLayoutParams(params);
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -199,6 +214,10 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
     }
   }
 
+  private int dpToPx(int dp) {
+    return (int) (dp * getResources().getDisplayMetrics().density + 0.5f);
+  }
+
   /**
    * A fragment that shows a static list of videos.
    */
@@ -207,6 +226,7 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
     private static final List<VideoEntry> VIDEO_LIST;
     static {
       List<VideoEntry> list = new ArrayList<VideoEntry>();
+      list.add(new VideoEntry("Introdcción a MOK", "wNsd-WRFHN8"));
       list.add(new VideoEntry("YouTube Collection", "Y_UmWdcTrrc"));
       list.add(new VideoEntry("GMail Tap", "1KhZKNZO8mQ"));
       list.add(new VideoEntry("Chrome Multitask", "UiLSiqyDf4Y"));
@@ -240,7 +260,7 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
       String videoId = VIDEO_LIST.get(position).videoId;
 
       VideoFragment videoFragment =
-          (VideoFragment) getFragmentManager().findFragmentById(R.id.video_fragment_container);
+              (VideoFragment) getFragmentManager().findFragmentById(R.id.video_fragment_container);
       videoFragment.setVideoId(videoId);
 
       // The videoBox is INVISIBLE if no video was previously selected, so we need to show it now.
@@ -270,6 +290,8 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
     }
 
   }
+
+  // Utility methods for layouting.
 
   /**
    * Adapter for the video list. Manages a set of YouTubeThumbnailViews, including initializing each
@@ -358,12 +380,12 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
     }
 
     private final class ThumbnailListener implements
-        YouTubeThumbnailView.OnInitializedListener,
-        YouTubeThumbnailLoader.OnThumbnailLoadedListener {
+            YouTubeThumbnailView.OnInitializedListener,
+            YouTubeThumbnailLoader.OnThumbnailLoadedListener {
 
       @Override
       public void onInitializationSuccess(
-          YouTubeThumbnailView view, YouTubeThumbnailLoader loader) {
+              YouTubeThumbnailView view, YouTubeThumbnailLoader loader) {
         loader.setOnThumbnailLoadedListener(this);
         thumbnailViewToLoaderMap.put(view, loader);
         view.setImageResource(R.drawable.loading_thumbnail);
@@ -373,7 +395,7 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
 
       @Override
       public void onInitializationFailure(
-          YouTubeThumbnailView view, YouTubeInitializationResult loader) {
+              YouTubeThumbnailView view, YouTubeInitializationResult loader) {
         view.setImageResource(R.drawable.no_thumbnail);
       }
 
@@ -390,7 +412,7 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
   }
 
   public static final class VideoFragment extends YouTubePlayerFragment
-      implements OnInitializedListener {
+          implements OnInitializedListener {
 
     private YouTubePlayer player;
     private String videoId;
@@ -454,27 +476,6 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
       this.text = text;
       this.videoId = videoId;
     }
-  }
-
-  // Utility methods for layouting.
-
-  private int dpToPx(int dp) {
-    return (int) (dp * getResources().getDisplayMetrics().density + 0.5f);
-  }
-
-  private static void setLayoutSize(View view, int width, int height) {
-    LayoutParams params = view.getLayoutParams();
-    params.width = width;
-    params.height = height;
-    view.setLayoutParams(params);
-  }
-
-  private static void setLayoutSizeAndGravity(View view, int width, int height, int gravity) {
-    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-    params.width = width;
-    params.height = height;
-    params.gravity = gravity;
-    view.setLayoutParams(params);
   }
 
 }

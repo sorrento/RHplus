@@ -1,25 +1,35 @@
 package com.stupidpeople.rhplus;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class DrawerActivity extends AppCompatActivity
+/**
+ * Created by Milenko on 19/03/2016.
+ */
+public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
+//        setContentView(R.layout.activity_drawer_docs);
+//        Initalize();
+    }
+
+    protected void Initalize() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,6 +51,7 @@ public class DrawerActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -80,13 +91,26 @@ public class DrawerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_radar) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            Log.d("aut", "Empezando la actividad radar");
+            Intent intent = new Intent(this, DrawerActivityRadar.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_docs) {
+            Log.d("aut", "Empezando la actividad docs");
+            Intent intent = new Intent(this, DrawerActivityDocs.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_media) {
+            Log.d("aut", "Empezando la actividad Videos");
+            Intent intent = new Intent(this, VideoListDemoActivity.class);
+//            Intent intent = new Intent(this, DrawerActivityVideos.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_calendar) {
+            Log.d("aut", "Empezando la actividad Calendar");
+            Intent intent = new Intent(this, DrawerActivityCale.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
@@ -98,4 +122,5 @@ public class DrawerActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

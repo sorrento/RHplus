@@ -2,19 +2,17 @@ package com.stupidpeople.rhplus;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static java.lang.System.currentTimeMillis;
 
-public class CalendarActivity extends AppCompatActivity {
-
-    private Context mContext;
+public class DrawerActivityCale extends BaseActivity {
 
     /*****************
      * Event: note(without alert)
@@ -117,8 +115,8 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        mContext = this;
+        setContentView(R.layout.activity_drawer_cale);
+        Initalize();
     }
 
     public void CreateCal(View view) {
@@ -126,58 +124,24 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     public void AddEvents(View view) {
-        //TODO add two events to the calendar "RHplus
-        long delta = 90 * 60 * 1000; //90 mins
-        long delay1 = 4 * 24 * 60 * 60 * 1000;//dentro de 4 dias
-        CalItem item1 = new CalItem("Hablar con RH", currentTimeMillis() + delay1, currentTimeMillis() + delay1 + delta, "para que te cuente de qué va la cosa", "Oficina !A");
+        try {
+            //TODO add two events to the calendar "RHplus
+            long delta = 90 * 60 * 1000; //90 mins
+            long delay1 = 4 * 24 * 60 * 60 * 1000;//dentro de 4 dias
+            long lolo = currentTimeMillis() + delay1;
+            CalItem item1 = new CalItem("Hablar con RH", lolo, lolo + delta, "para que te cuente de qué va la cosa", "Oficina !A");
 //        mContext.startActivity(item1.getIntent());
-
-        pushAppointmentsToCalender(this, item1);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM  'at' HH:mm");
+            String pp = sdf.format(new Date(lolo));
+            Toast.makeText(DrawerActivityCale.this, "Created the event for " + pp, Toast.LENGTH_SHORT).show();
+            pushAppointmentsToCalender(this, item1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     private long pushAppointmentsToCalender(Activity calendarActivity, CalItem item1) {
         return pushAppointmentsToCalender(calendarActivity, item1.title, item1.description, item1.location, 1, item1.startInMilli, true, true);
-    }
-
-}
-
-class CalItem {
-    public String title;
-
-    public long startInMilli;
-    public long endInMilli;
-    public String description;
-    public String location;
-
-    public CalItem(String title, long startInMilli, long endInMilli, String description, String location) {
-        this.title = title;
-        this.startInMilli = startInMilli;
-        this.endInMilli = endInMilli;
-        this.description = description;
-        this.location = location;
-    }
-
-    public Intent getIntent() {
-        Intent intent = new Intent(Intent.ACTION_EDIT);
-        intent.setType("vnd.android.cursor.item/event");
-
-        intent.putExtra(CalendarContract.Events.TITLE, title);
-        intent.putExtra(CalendarContract.Events.ALL_DAY, false);
-        intent.putExtra(CalendarContract.Events.DESCRIPTION, description);
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, location); //TODO ver como poner un reaminder
-//                    intent.putExtra(CalendarContract.Reminders., scItem.location);
-//                    intent.putExtra(CalendarContract.Events.HAS_ALARM, 4);//Alert
-
-        intent.putExtra(CalendarContract.Events.DTSTART, startInMilli);//Complete
-        intent.putExtra(CalendarContract.Events.DTEND, endInMilli);//Complete
-
-//        intent.putExtra("beginTime", cal.getTimeInMillis() + 60 * 60 * 1000);
-//                    intent.putExtra("beginTime", cal.getTimeInMillis() + 60 * 60 * 1000);
-//                    intent.putExtra("allDay", false);
-//                    intent.putExtra("rrule", "FREQ=YEARLY");
-//                    intent.putExtra("endTime", cal.getTimeInMillis() + 2 * 60 * 60 * 1000);
-
-        return intent;
     }
 }
