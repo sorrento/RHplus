@@ -1,0 +1,53 @@
+{
+  "survey_properties": {
+    "intro_message": "<strong>Tu evaluación nos importa MUCHO.</strong><br><br><br>  Hola, respondiendo esta encuestas ayudas que todo en MOK vaya mucho mejor.<br><br> Dependiendo de tu experiencia en las visitas, cuéntanos qué se podría mejorar.<br><br> Es anónimo y toma menos de dos minutos!",
+    "end_message": "Gracias por darnos tu opinión.",
+    "skip_intro": false
+  },
+  "questions": [
+    {
+      "question_type": "Checkboxes",
+      "question_title": "¿Cómo calificarías la explicación?",
+      "description": "(Pon todas las que creas)",
+      "required": false,
+      "random_choices": false,
+      "choices": [
+        "Útil como conocimiento general",
+        "Ayuda a entender el proceso global",
+        "Sirve para conocer al personal",
+        "Un poco una perdida de tiempo"
+      ]
+    },
+    {
+      "question_type": "Checkboxes",
+      "question_title": "¿Te gustan los colores?",
+      "description": "",
+      "required": false,
+      "random_choices": true,
+      "choices": [
+        "<font color='#AA0000'>Sí me mola el <strong>rojo</strong>, es lo mejor</font>",
+        "Nadie vence al <font color='#00AA00'>verde Wanderino</font>",
+        "Los lunes me siento un poco <font color='#0000AA'><strong>blue</strong></font>"
+      ]
+    },
+    {
+      "question_type": "String",
+      "question_title": "¿Qué mejorarías?",
+      "description": "",
+      "required": false
+    },
+    {
+      "question_title": "¿Cuántos minutos duró la visita?",
+      "description": "",
+      "required": false,
+      "question_type": "Number"
+    },
+    {
+      "question_type": "StringMultiline",
+      "question_title": "Te toca explayarte",
+      "description": "",
+      "required": false,
+      "number_of_lines": 4
+    }
+  ]
+}

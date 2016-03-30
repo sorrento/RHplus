@@ -29,4 +29,5 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.3'
     compile files('libs/picasso-2.3.4.jar')
     compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile 'com.androidadvance.surveylib:surveylib:0.0.1'
 }

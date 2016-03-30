@@ -16,11 +16,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.androidadvance.androidsurvey.SurveyActivity;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Created by Milenko on 19/03/2016.
  */
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final int SURVEY_REQUEST = 1337;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,30 +99,36 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_radar) {
-            // Handle the camera action
             Log.d("aut", "Empezando la actividad radar");
-            Intent intent = new Intent(this, DrawerActivityRadar.class);
-            startActivity(intent);
+            startActivity(new Intent(this, DrawerActivityRadar.class));
+
         } else if (id == R.id.nav_docs) {
             Log.d("aut", "Empezando la actividad docs");
-            Intent intent = new Intent(this, DrawerActivityDocs.class);
-            startActivity(intent);
+            startActivity(new Intent(this, DrawerActivityDocs.class));
 
         } else if (id == R.id.nav_media) {
             Log.d("aut", "Empezando la actividad Videos");
-            Intent intent = new Intent(this, VideoListDemoActivity.class);
-//            Intent intent = new Intent(this, DrawerActivityVideos.class);
-            startActivity(intent);
+            //            Intent intent = new Intent(this, DrawerActivityVideos.class);
+            startActivity(new Intent(this, VideoListDemoActivity.class));
 
         } else if (id == R.id.nav_calendar) {
             Log.d("aut", "Empezando la actividad Calendar");
-            Intent intent = new Intent(this, DrawerActivityCale.class);
-            startActivity(intent);
+            startActivity(new Intent(this, DrawerActivityCale.class));
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_browser) {
+            Log.d("aut", "Empezando la actividad Browser");
+            startActivity(new Intent(this, DrawerBrowserActivity.class));
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_survey) {
+            Log.d("aut", "Empezando la actividad Browser");
+            try {
+                //TODO startActivity(new Intent(this, DrawerSurveyActivity.class));
+                Intent i_survey = new Intent(this, SurveyActivity.class);
+                i_survey.putExtra("json_survey", loadSurveyJson("eje1.json"));
+                startActivityForResult(i_survey, SURVEY_REQUEST);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -123,4 +136,34 @@ public class BaseActivity extends AppCompatActivity
         return true;
     }
 
+    //json stored in the assets folder. but you can get it from wherever you like.
+    private String loadSurveyJson(String filename) {
+        try {
+            InputStream is = getAssets().open(filename);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            return new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SURVEY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+
+                String answers_json = data.getExtras().getString("answers");
+                Log.d("****", "****************** WE HAVE ANSWERS ******************");
+                Log.v("ANSWERS JSON", answers_json);
+                Log.d("****", "*****************************************************");
+
+                //do whatever you want with them...
+            }
+        }
+    }
 }
